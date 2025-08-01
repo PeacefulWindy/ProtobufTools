@@ -29,12 +29,18 @@ def main():
         json_data = json.load(file)
 
     generate(json_data["input"],json_data["output"])
+
     print("will move proto...")
-    print("move client proto...")
-    move(json_data["output"],json_data["move"]["client"])
-    print("move server proto...")
-    move(json_data["output"],json_data["move"]["server"])
-    print("move proto finish!")
+
+    if json_data["move"]:
+        if json_data["move"]["client"]:
+            print("move client proto...")
+            move(json_data["output"],json_data["move"]["client"])
+
+        if json_data["move"]["server"]:
+            print("move server proto...")
+            move(json_data["output"],json_data["move"]["server"])
+        print("move proto finish!")
     print()
 
 main()
